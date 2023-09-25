@@ -29,13 +29,17 @@
 430 _IOTGET("device/dht/temperature", A):ST$="Temp:"+STR$(A)+" C":GOSUB 2390
 440 R=5:C=0:GOSUB 2330
 450 _IOTGET("device/dht/humidity",    A):ST$="Humi:"+STR$(A)+" %":GOSUB 2390
+460 R=6:C=0:GOSUB 2330
+470 ST$="-=-=-=-=-=-=-=-":GOSUB 2390
+480 R=7:C=0:GOSUB 2330
+490 ST$="-=-=-=-=-=-=-=-":GOSUB 2390
 999 GOTO 380
 1000 ' INIT
 1005 PRINT "INIT"
 1010 MC$=CHR$(&HC8)
 1020 MC$=MC$+CHR$(&HC8) '[C0]/C8:Vertical drawing direction
 1030 MC$=MC$+CHR$(&HA1) '[A0]/A1:Horizontal drawing direction
-1040 MC$=MC$+CHR$(&HA8):MC$=MC$+CHR$(&HF3) 'Screen Resolution 3F:64Line / 1F:32Line
+1040 MC$=MC$+CHR$(&HA8):MC$=MC$+CHR$(&H3F) 'Screen Resolution 3F:64Line / 1F:32Line
 1050 MC$=MC$+CHR$(&HDA):MC$=MC$+CHR$(&H12) '[12]:Sequential / 02:Alternative
 1060 MC$=MC$+CHR$(&HD3):MC$=MC$+CHR$(&H0) 'Vertical offset
 1070 MC$=MC$+CHR$(&H40) 'Vertical drawing start position

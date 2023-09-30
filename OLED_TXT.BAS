@@ -36,17 +36,16 @@
 999 GOTO 380
 1000 ' INIT
 1005 PRINT "INIT"
-1010 MC$=CHR$(&HC8)
-1020 MC$=MC$+CHR$(&HC8) '[C0]/C8:Vertical drawing direction
-1030 MC$=MC$+CHR$(&HA1) '[A0]/A1:Horizontal drawing direction
-1040 MC$=MC$+CHR$(&HA8)+CHR$(&H3F) 'Screen Resolution 3F:64Line / 1F:32Line
-1050 MC$=MC$+CHR$(&HDA)+CHR$(&H12) '[12]:Sequential / 02:Alternative
-1060 MC$=MC$+CHR$(&HD3)+CHR$(&H0) 'Vertical offset
-1070 MC$=MC$+CHR$(&H40) 'Vertical drawing start position
-1080 MC$=MC$+CHR$(&HA6) 'A7:[A6] Color Inversion or Not
-1090 MC$=MC$+CHR$(&H8D)+CHR$(&H14) 'Supply voltage of the OLED panel.Must be set to 14h.
-1100 GOSUB 6000
-1110 RETURN
+1010 MC$=CHR$(&HC8) '[C0]/C8:Vertical drawing direction
+1020 MC$=MC$+CHR$(&HA1) '[A0]/A1:Horizontal drawing direction
+1030 MC$=MC$+CHR$(&HA8)+CHR$(&H3F) 'Screen Resolution 3F:64Line / 1F:32Line
+1040 MC$=MC$+CHR$(&HDA)+CHR$(&H12) '[12]:Sequential / 02:Alternative
+1050 MC$=MC$+CHR$(&HD3)+CHR$(&H0) 'Vertical offset
+1060 MC$=MC$+CHR$(&H40) 'Vertical drawing start position
+1070 MC$=MC$+CHR$(&HA6) 'A7:[A6] Color Inversion or Not
+1080 MC$=MC$+CHR$(&H8D)+CHR$(&H14) 'Supply voltage of the OLED panel.Must be set to 14h.
+1090 GOSUB 6000
+1100 RETURN
 2260 'CLEAR
 2270 PRINT "CLEAR"
 2280 SC=DF:GOSUB 5000

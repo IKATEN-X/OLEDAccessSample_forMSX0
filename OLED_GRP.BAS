@@ -27,14 +27,15 @@
 310 GOSUB 2260
 320 FOR Y=0 TO 55 STEP 8
 330 R=Y/8:C=0:GOSUB 2330
-340 FOR X=0 TO 127 STEP 8
+340 FOR X=0 TO 127 STEP 32
 350 DT$=""
+355 FOR K=0 TO 3
 360 FOR I=0 TO 7:D=0
 370 FOR L=0 TO 7:A=2^L
-380 C=POINT(X+I,Y+L):IF C=15 THEN D=D+A
+380 C=POINT(K*8+X+I,Y+L):IF C=15 THEN D=D+A
 390 NEXT L
 400 DT$=DT$+CHR$(D)
-410 NEXT I:GOSUB 7000
+410 NEXT I:NEXT K:GOSUB 7000
 420 NEXT X,Y
 430 R=6:C=0:GOSUB 2330
 440 _IOTGET("conf/ram_size_id",MI)
@@ -45,16 +46,16 @@
 999 GOTO 999
 1000 ' INIT
 1005 PRINT "INIT"
-1010 MC$=CHR$(&HC8)
-1020 MC$=MC$+CHR$(&HC8) '[C0]/C8:Vertical drawing direction
-1030 MC$=MC$+CHR$(&HA1) '[A0]/A1:Horizontal drawing direction
-1040 MC$=MC$+CHR$(&HA8)+CHR$(&H3F) 'Screen Resolution 3F:64Line / 1F:32Line
-1050 MC$=MC$+CHR$(&HDA)+CHR$(&H12) '[12]:Sequential / 02:Alternative
-1060 MC$=MC$+CHR$(&HD3)+CHR$(&H0) 'Vertical offset
-1070 MC$=MC$+CHR$(&H40) 'Vertical drawing start position
-1080 MC$=MC$+CHR$(&HA6) 'A7:[A6] Color Inversion or Not
-1090 MC$=MC$+CHR$(&H8D)+CHR$(&H14) 'Supply voltage of the OLED panel.Must be set to 14h.
-1100 GOSUB 6000
+1010 MC$=CHR$(&HC8) '[C0]/C8:Vertical drawing direction
+1020 MC$=MC$+CHR$(&HA1) '[A0]/A1:Horizontal drawing direction
+1030 MC$=MC$+CHR$(&HA8)+CHR$(&H3F) 'Screen Resolution 3F:64Line / 1F:32Line
+1040 MC$=MC$+CHR$(&HDA)+CHR$(&H12) '[12]:Sequential / 02:Alternative
+1050 MC$=MC$+CHR$(&HD3)+CHR$(&H0) 'Vertical offset
+1060 MC$=MC$+CHR$(&H40) 'Vertical drawing start position
+1070 MC$=MC$+CHR$(&HA6) 'A7:[A6] Color Inversion or Not
+1080 MC$=MC$+CHR$(&H8D)+CHR$(&H14) 'Supply voltage of the OLED panel.Must be set to 14h.
+1090 GOSUB 6000
+1100 RETURN
 1110 RETURN
 2260 'CLEAR
 2270 PRINT "CLEAR"
